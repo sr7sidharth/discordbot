@@ -1,0 +1,1 @@
+this folder contains pictures and other assets not stored in the database

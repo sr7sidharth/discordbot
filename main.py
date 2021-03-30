@@ -8,10 +8,31 @@ if __name__ == "__main__":
     load_dotenv()
     token = os.getenv("discord_token")
     username = os.getenv("user")
-    password = os.getenv("password")
+    password = os.getenv("password"),
     database_name = os.getenv("database_name")
 
-    # Connect to database
+    # Set up database
+    db = mysql.connector.connect(
+        host = "localhost",
+        user = username,
+        password = password,
+    )
+
+    cursor = db.cursor()
+
+    query_string = "CREATE DATABASE IF NOT EXISTS " + database_name
+
+    cursor.execute(query_string)
+    db.commit()
+
+    # Create tables
+
+    #cursor.execute('CREATE TABLE IF NOT EXISTS HOT_TOYS_SCRAPER')
+
+    cursor.close()
+    db.close()
+
+    # Connect to database 
     db = mysql.connector.connect(
         host = "localhost",
         user = username,
